@@ -8,7 +8,7 @@ const Grid = ({ config, data }) => (
       <tr>
         {config.map(column => {
           return (
-            <th key={column.title}>
+            <th key={uuidv4()}>
               {column.title}
             </th>
           )
@@ -21,21 +21,9 @@ const Grid = ({ config, data }) => (
           <tr key={uuidv4()}>
             {
               config.map(column => {
-                // TODO: make dynamic by mapping over the object key and values 
-                if (typeof row[column.field] === "object") {
-                  return (
-                    (
-                      <td key={row[column.field].url}>{
-                        Object.values(row[column.field])[0].startsWith('http') ?
-                          <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
-                          Object.values(row[column.field])
-                      }</td>
-                    )
-                  )
-                }
                 return (
-                  <td key={row[column.field]}>
-                    {row[column.field]}
+                  <td key={uuidv4()}>
+                    <TableCell row={row} column={column} />
                   </td>
                 )
               })
@@ -47,5 +35,18 @@ const Grid = ({ config, data }) => (
     </tbody>
   </table>
 );
+
+function TableCell({ row, column }) {
+  let tableContent;
+  if (row[column.field] && typeof row[column.field] === "object") {
+    tableContent = Object.values(row[column.field])[0].startsWith('http') ?
+            <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
+            Object.values(row[column.field])
+  } else {
+    tableContent = row[column.field]
+  } 
+    return tableContent
+}
+
 
 export default Grid;
