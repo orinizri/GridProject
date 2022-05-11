@@ -1,7 +1,7 @@
 import React from 'react';
-import Grid from './Grid';
-import movies from './data_a';
-import pokemon from './data_b';
+import Grid from './components/Grid/Grid';
+import movies from './data/data_a';
+import pokemon from './data/data_b';
 
 const Trailer = ({ data }) => (
   <a href={data.url}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import GridCell from '../GridCell/GridCell';
 
 
 const Grid = ({ config, data }) => (
@@ -23,7 +24,7 @@ const Grid = ({ config, data }) => (
               config.map(column => {
                 return (
                   <td key={uuidv4()}>
-                    <TableCell row={row} column={column} />
+                    <GridCell row={row} column={column} />
                   </td>
                 )
               })
@@ -35,18 +36,6 @@ const Grid = ({ config, data }) => (
     </tbody>
   </table>
 );
-
-function TableCell({ row, column }) {
-  let tableContent;
-  if (typeof row[column.field] === "object") {
-    tableContent = Object.values(row[column.field])[0].startsWith('http') ?
-            <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
-            Object.values(row[column.field])
-  } else {
-    tableContent = row[column.field] || ''
-  } 
-    return tableContent
-}
 
 
 export default Grid;
