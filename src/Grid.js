@@ -38,12 +38,12 @@ const Grid = ({ config, data }) => (
 
 function TableCell({ row, column }) {
   let tableContent;
-  if (row[column.field] && typeof row[column.field] === "object") {
+  if (typeof row[column.field] === "object") {
     tableContent = Object.values(row[column.field])[0].startsWith('http') ?
             <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
             Object.values(row[column.field])
   } else {
-    tableContent = row[column.field]
+    tableContent = row[column.field] || ''
   } 
     return tableContent
 }
