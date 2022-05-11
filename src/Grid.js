@@ -20,6 +20,7 @@ const Grid = ({ config, data }) => (
             <tr>
               {
                 config.map(column => {
+                  // TODO: make dynamic by mapping over the object keys and values 
                   if (row[column.field].hasOwnProperty('url')) {
                     return (
                       (
