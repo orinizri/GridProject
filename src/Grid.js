@@ -1,4 +1,6 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Grid = ({ config, data }) => (
   <table>
@@ -6,7 +8,7 @@ const Grid = ({ config, data }) => (
       <tr>
         {config.map(column => {
           return (
-            <th>
+            <th key={column.title}>
               {column.title}
             </th>
           )
@@ -16,27 +18,29 @@ const Grid = ({ config, data }) => (
     <tbody>
       {data.map(row => {
         return (
-          <>
-            <tr>
-              {
-                config.map(column => {
-                  // TODO: make dynamic by mapping over the object keys and values 
-                  if (row[column.field].hasOwnProperty('url')) {
-                    return (
-                      (
-                        <td key={row[column.field].url}>{row[column.field].url}</td>
-                      )
-                    )
-                  }
+          <tr key={uuidv4()}>
+            {
+              config.map(column => {
+                // TODO: make dynamic by mapping over the object key and values 
+                if (typeof row[column.field] === "object") {
                   return (
-                    <td key={row[column.field]}>
-                      {row[column.field]}
-                    </td>
+                    (
+                      <td key={row[column.field].url}>{
+                        Object.values(row[column.field])[0].startsWith('http') ?
+                          <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
+                          Object.values(row[column.field])
+                      }</td>
+                    )
                   )
-                })
-              }
-            </tr>
-          </>
+                }
+                return (
+                  <td key={row[column.field]}>
+                    {row[column.field]}
+                  </td>
+                )
+              })
+            }
+          </tr>
         )
       })}
 
