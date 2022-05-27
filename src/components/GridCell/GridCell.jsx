@@ -1,11 +1,9 @@
-export default function GridCell({ row, column }) {
-    let tableContent;
-    if (typeof row[column.field] === "object") {
-        tableContent = Object.values(row[column.field])[0].startsWith('http') ?
-            <a href={Object.values(row[column.field])}>{Object.values(row[column.field])}</a> :
-            Object.values(row[column.field]);
-    } else {
-        tableContent = row[column.field] || '';
+
+
+
+export default function GridCell({ rowData, columnConfig }) {
+    if (columnConfig.component) {
+        return <columnConfig.component data={Object.values(rowData[columnConfig.field])} />
     }
-    return tableContent
+    return rowData[columnConfig.field];
 };

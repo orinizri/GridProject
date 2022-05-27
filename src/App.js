@@ -3,15 +3,18 @@ import Grid from './components/Grid/Grid';
 import movies from './data/data_a';
 import pokemon from './data/data_b';
 
-const Trailer = ({ data }) => (
-  <a href={data.url}
+const Trailer = ({ data }) => {
+  return (<a href={data}
     target="_blank"
     rel="noopener noreferrer">
     trailer...
-  </a>
-);
+  </a>)
+};
 
-const PokemonName = ({ data }) => <span style={{ textTransform: 'capitalize' }}>{data}</span>;
+const PokemonName = ({ data }) =>
+  <span style={{ textTransform: 'capitalize' }}>
+    {data}
+  </span>;
 
 const moviesConfig = [
   {
