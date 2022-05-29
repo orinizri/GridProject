@@ -1,16 +1,15 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
 import GridCell from '../GridCell/GridCell';
 
 export default function GridBody({ data, config }) {
     return (
         <tbody>
-            {data.map(rowData => {
+            {data.map((rowData, index) => {
                 return (
-                    <tr key={uuidv4()}>
-                        {config.map(columnConfig => {
+                    <tr key={index}>
+                        {config.map((columnConfig, index) => {
                             return (
-                                <td key={uuidv4()}>
+                                <td key={index}>
                                     <GridCell rowData={rowData} columnConfig={columnConfig} />
                                 </td>)
                         })}

@@ -4,7 +4,7 @@ import movies from './data/data_a';
 import pokemon from './data/data_b';
 
 const Trailer = ({ data }) => {
-  return (<a href={data}
+  return (<a href={data.url}
     target="_blank"
     rel="noopener noreferrer">
     trailer...
@@ -52,7 +52,6 @@ const App = () => (
   <div>
     <h2>Movies</h2>
     <Grid config={moviesConfig} data={movies} />
-
     <h2>Pokemon</h2>
     <Grid config={pokemonConfig} data={pokemon} />
   </div>

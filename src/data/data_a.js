@@ -16,7 +16,7 @@ export default [
     "imdbID":"tt0111161",
     "Type":"movie",
     "Response":"True",
-    "Trailer":{
+    "Trailer": {
       "url":"https://www.youtube.com/watch?v=6hB3S9bIaco"
     }
   },
